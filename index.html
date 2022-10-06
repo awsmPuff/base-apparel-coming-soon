@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Base Apparel coming soon page</title>
+
+  <link rel="stylesheet" href="./styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <img class="logo" src="./images/logo.svg" alt="Base Apparel">
+
+  <main>
+    <article>
+      <h1><span>We're</span> coming soon</h1>
+      <p>
+        Hello fellow shoppers! We're currently building our new fashion store. 
+        Add your email below to stay up-to-date with announcements and our launch deals.
+      </p>
+      <form class="email">
+        <input class="email-address" type="email" placeholder="Email Address" />
+        <button class="submit" type="submit">
+          <img src="./images/icon-arrow.svg" alt="go">
+        </button>
+        <img class="error" src="./images/icon-error.svg" alt="error">
+        <div class="error-message"></div>
+        <div class="empty-message"></div>
+        <div class="success-message"></div>
+      </form>
+    </article>
+    <div class="pic"></div>
+  </main>
+
+  <script>
+    const email = document.querySelector(".email-address");
+    const errorMessage = document.querySelector(".error-message");
+    const emptyMessage = document.querySelector(".empty-message");
+    const successMessage = document.querySelector(".success-message");
+    const error = document.querySelector(".error");
+    const submit = document.querySelector(".submit");
+
+    submit.addEventListener("click", (e) => {
+      if(email.value) {
+        e.preventDefault();
+          const regexMatch = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);
+          if(regexMatch) {
+            emptyMessage.textContent = "";
+            errorMessage.textContent = "";
+            successMessage.textContent = "Thank You For Subscribing!";
+            error.style.display = "none";
+            email.style.outline = "transparent";
+          } else {
+            errorMessage.textContent = "Please provide a valid email";
+            emptyMessage.textContent = "";
+            successMessage.textContent = "";
+            error.style.display = "block";
+            email.style.outline = "1px solid hsl(0, 93%, 68%)";
+          }
+        } else {
+          e.preventDefault();
+          error.style.display = "none";
+          emptyMessage.textContent = "You must type in an email";
+          errorMessage.textContent = "";
+          successMessage.textContent = "";
+        }
+    })
+    // email.addEventListener("input", () => {
+    //     if(email.value) {
+    //       const regexMatch = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value);
+    //       if(regexMatch) {
+    //         emptyMessage.textContent = "";
+    //         errorMessage.textContent = "";
+    //         error.style.display = "none";
+    //         email.style.outline = "transparent";
+    //       } else {
+    //         errorMessage.textContent = "Please provide a valid email";
+    //         emptyMessage.textContent = "";
+    //         error.style.display = "block";
+    //         email.style.outline = "1px solid hsl(0, 93%, 68%)";
+    //       }
+    //     } else {
+    //       error.style.display = "none";
+    //       emptyMessage.textContent = "You must type in an email";
+    //       errorMessage.textContent = "";
+    //     }
+    //   });
+  </script>
+</body>
+</html>
